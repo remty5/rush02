@@ -6,14 +6,16 @@
 /*   By: aallou-v <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:15:23 by aallou-v          #+#    #+#             */
-/*   Updated: 2023/07/21 23:26:38 by aallou-v         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:59:35 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, **argv)
+#include <unistd.h>
+
+int	main(int argc, char *argv[])
 {
-	if (argc == 1 || argc > 3)
-	{
-		return (1);
-	}
+	(void)argc;
+	(void)argv;
+	write(1, "yay.\n", 5);
+	return (0);
 }
