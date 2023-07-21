@@ -1,38 +1,48 @@
-SRC			= main.c ft_list_push_front.c ft_create_elem.c parse_dict.c ft_file_read.c ft_putall.c ft_atoi.c ft_strdup.c print_number.c checks_number.c split_number.c  ft_list_sort.c ft_list_clear.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/19 15:57:10 by rvandepu          #+#    #+#              #
+#    Updated: 2023/07/21 23:30:55 by rvandepu         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRCS = ${addprefix ${PRE}, ${SRC}}
+SRC_DIR := src
+OBJ_DIR := bin
 
-OBJS = ${SRCS:.c=.o}
+BIN := rush-02
 
-PRE	= ./srcs/
+SOURCES := main.c\
 
-HEAD = ./includes/
+SRC := $(SOURCES:%=$(SRC_DIR)/%)
+OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-DICT = ./dicts/
+CPPFLAGS += -Iinclude
+CFLAGS   += -Wall -Wextra -Werror
+LDFLAGS  +=
+LDLIBS   +=
 
-NAME = rush-02
+.PHONY: all clean fclean re
 
-RM	= rm -f
-
-GCC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-all: ${NAME}
-
-.c.o:
-	${GCC} ${CFLAGS} -c -I ${HEAD} $< -o ${<:.c=.o}
-
-${NAME}: ${OBJS}
-		${GCC} ${CFLAGS} -o ${NAME} ${OBJS}
+all: $(BIN)
 
 clean:
-	rm -f ${OBJS}
+	$(RM) -f $(OBJ)
+	$(RM) -d $(OBJ_DIR)
 
-fclean:	clean
-	rm -f ${NAME}
+fclean: clean
+	$(RM) -f $(BIN)
 
-re:	fclean all
+re: fclean all
 
-.PHONY:	all clean fclean re
+$(BIN): $(OBJ)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $@
