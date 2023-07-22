@@ -6,7 +6,7 @@
 /*   By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:54:17 by rvandepu          #+#    #+#             */
-/*   Updated: 2023/07/22 23:37:24 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/23 01:10:40 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_parse_line(struct s_entry *entry, char *line)
 		i++;
 	if (i == 0 || line[i++] != ':')
 		return (0);
-	while (i > 0 && line[i] == ' ')
+	while (line[i] == ' ')
 		i++;
 	s = i;
-	while (i > 0 && ' ' <= line[i] && line[i] <= '~')
+	while (' ' <= line[i] && line[i] <= '~')
 		i++;
-	if (i == 0 || line[i] != '\n')
+	if (i == s || line[i] != '\n')
 		return (0);
 	while (line[--i] == ' ')
 		;
