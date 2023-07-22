@@ -6,7 +6,7 @@
 /*   By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:24:44 by rvandepu          #+#    #+#             */
-/*   Updated: 2023/07/22 13:38:02 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:56:59 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 # define DICT_PATH "dicts/numbers.dict"
 # define READ_SIZE 2048
+
+typedef struct s_entry {
+	unsigned long long	n;
+	char				*v;
+}	t_entry;
 
 // ft_read_utils
 int					ft_read_file(char **str, int fd);

@@ -6,7 +6,7 @@
 /*   By: aallou-v <aallou-v@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:15:23 by aallou-v          #+#    #+#             */
-/*   Updated: 2023/07/22 13:40:49 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:30:21 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@ int	ft_error(void)
 
 int	main(int argc, char *argv[])
 {
-	char	*nbr_str;
 	char	*path;
+	char	*nbr_str;
 
 	if (argc <= 3)
 	{
-		nbr_str = argv[argc - 1];
-		if (argc == 1)
-			ft_read_file(&nbr_str, 0);
 		path = DICT_PATH;
 		if (argc == 3)
 			path = argv[1];
+		nbr_str = argv[argc - 1];
+		if (argc == 1)
+			ft_read_file(&nbr_str, 0);
+		if (!ft_is_valid_nbr(nbr_str))
+			return (ft_error());
 		printf("%s_%d_%s\n", nbr_str, ft_is_valid_nbr(nbr_str), path);
 	}
 	else
