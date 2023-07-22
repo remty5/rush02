@@ -6,13 +6,22 @@
 /*   By: aallou-v <aallou-v@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 23:15:23 by aallou-v          #+#    #+#             */
-/*   Updated: 2023/07/22 19:08:07 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/22 23:25:46 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
 #include "rush_02.h"
+
+void	disp_dict(struct s_entry *dict)
+{
+	int	i;
+
+	i = -1;
+	while (dict[++i].v)
+		printf("i: %d\n\tn: %llu\n\tv: '%s'\n", i, dict[i].n, dict[i].v);
+}
 
 int	rush(char *dict_path, char *nbr_str)
 {
@@ -30,6 +39,7 @@ int	rush(char *dict_path, char *nbr_str)
 	printf("========\nnbr: %s\n", nbr_str);
 	if (!ft_parse_dict(&dict, dict_str))
 		return (0);
+	disp_dict(dict);
 	ft_free_dict(dict, -1);
 	free(dict_str);
 	return (1);
