@@ -6,7 +6,7 @@
 /*   By: aallou-v <aallou-v@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:01:49 by aallou-v          #+#    #+#             */
-/*   Updated: 2023/07/23 22:26:08 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/23 23:55:37 by aallou-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,31 @@ void	ft_putvalues(t_entry *dict, long long values, int x, int space)
 		write(1, "\n", 1);
 }
 
-void	ft_algo(t_entry *dict, char *values, int mod, int s)
+void	ft_algo(t_entry *dict, char *vals, int mod, int s)
 {
-	if (ft_strlen(values) == 3)
+	if (ft_strlen(vals) == 3)
 	{
-		ft_putvalues(dict, values[0] - 48, 0, 1);
-		if (values[0] != '0')
+		ft_putvalues(dict, vals[0] - 48, 0, 1);
+		if (vals[0] != '0')
 			ft_putvalues(dict, 100, 0, mod || s != 100);
-		if (values[1] - 48 != 0 && values[1] - 48 != 1)
-			ft_putvalues(dict, (values[1] - 48) * 10, 0, mod || s != 10);
-		if (values[2] - 48 != 0 && values[1] - 48 != 1)
-			ft_putvalues(dict, values[2] - 48, 0, mod || s != 1);
-		if (values[1] - 48 == 1)
-			ft_putvalues(dict, 10 + values[2] - 48, 0, mod || s != 1);
+		if (vals[1] - 48 != 0 && vals[1] - 48 != 1)
+			ft_putvalues(dict, (vals[1] - 48) * 10, 0, mod || s != 10);
+		if (vals[2] - 48 != 0 && vals[1] - 48 != 1)
+			ft_putvalues(dict, vals[2] - 48, 0, mod || s != 1);
+		if (vals[1] - 48 == 1)
+			ft_putvalues(dict, vals[2] -38, 0, mod || (!s && vals[2] != 48));
 	}
-	if (ft_strlen(values) == 2)
+	if (ft_strlen(vals) == 2)
 	{
-		if (values[0] - 48 != 1)
-			ft_putvalues(dict, (values[0] - 48) * 10, 0, mod || s != 10);
-		if (values[1] - 48 != 0 && values[0] - 48 != 1)
-			ft_putvalues(dict, values[1] - 48, 0, mod || s != 1);
-		if (values[0] - 48 == 1)
-			ft_putvalues(dict, 10 + values[1] - 48, 0, mod || s != 1);
+		if (vals[0] - 48 != 1)
+			ft_putvalues(dict, (vals[0] - 48) * 10, 0, mod || s != 10);
+		if (vals[1] - 48 != 0 && vals[0] - 48 != 1)
+			ft_putvalues(dict, vals[1] - 48, 0, mod || s != 1);
+		if (vals[0] - 48 == 1)
+			ft_putvalues(dict, 10 + vals[1] - 48, 0, mod || s != 1);
 	}
-	if (ft_strlen(values) == 1)
-		ft_putvalues(dict, values[0] - 48, 0, mod || s != 1);
+	if (ft_strlen(vals) == 1)
+		ft_putvalues(dict, vals[0] - 48, 0, mod || s != 1);
 	if (mod)
 		ft_putvalues(dict, mod, 0, !(mod <= s && s <= mod * 100));
 }
