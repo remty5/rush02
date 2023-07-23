@@ -40,6 +40,11 @@ int					ft_free_dict(struct s_entry *dict, int n);
 // ft_utils
 void				*ft_realloc(char *buf, int size);
 char				*ft_strdup(char *src);
+void				ft_putstr(char *str);
+int					ft_strlen(char *str);
 unsigned long long	ft_atoi(char *str);
+
+// ft_algo
+void				ft_show(t_entry *dict, char *values);
 
 #endif

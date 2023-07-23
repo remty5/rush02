@@ -6,7 +6,7 @@
 #    By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 15:57:10 by rvandepu          #+#    #+#              #
-#    Updated: 2023/07/22 16:48:19 by rvandepu         ###   ########.fr        #
+#    Updated: 2023/07/22 18:01:50 by aallou-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SOURCES := main.c\
 		   ft_read_utils.c\
 		   ft_parse_utils.c\
 		   ft_utils.c\
+		   ft_algo.c\
 
 SRC := $(SOURCES:%=$(SRC_DIR)/%)
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
