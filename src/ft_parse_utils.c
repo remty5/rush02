@@ -25,7 +25,7 @@ int	ft_is_valid_nbr(char *str, int is_stdin)
 	s = i;
 	while ('0' <= str[i] && str[i] <= '9')
 		i++;
-	if (s == i || i > 12)
+	if (s == i || i - s > 12)
 		return (0);
 	else
 		return (str[i] == '\0'

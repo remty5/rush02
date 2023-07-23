@@ -27,7 +27,7 @@ typedef struct s_entry {
 
 # define FILTER_SIZE 32
 
-static long long	g_filter[FILTER_SIZE] = {
+static const long long	g_filter[FILTER_SIZE] = {
 	0,	1,	2,	3,	4,
 	5,	6,	7,	8,	9,
 	10,	11,	12,	13,	14,
