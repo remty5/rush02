@@ -6,7 +6,7 @@
 /*   By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:40:17 by rvandepu          #+#    #+#             */
-/*   Updated: 2023/07/22 16:47:11 by rvandepu         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:54:22 by rvandepu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,15 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-unsigned long long	ft_atoi(char *str)
+long long	ft_atoi(char *str)
 {
-	unsigned long long	n;
+	long long	n;
 
 	n = 0;
+	while (*str == ' ')
+		str++;
+	if (*str == '+')
+		str++;
 	while ('0' <= *str && *str <= '9')
 		n = (n * 10) + (*str++ - '0');
 	return (n);
