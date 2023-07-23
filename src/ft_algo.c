@@ -6,7 +6,7 @@
 /*   By: aallou-v <aallou-v@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:01:49 by aallou-v          #+#    #+#             */
-/*   Updated: 2023/07/22 15:08:01 by aallou-v         ###   ########.fr       */
+/*   Updated: 2023/07/23 19:51:44 by aallou-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,123 +23,71 @@ int	stris0(char *values)
 	return (1);
 }
 
-void	ft_putvalues(t_entry *dict, unsigned long long values)
+void	ft_putvalues(t_entry *dict, unsigned long long values, int x)
 {
 	int	i;
 
 	i = 0;
+	if (values == 0 && x == 0)
+		return ;
 	while (dict[i].n != values)
 		i++;
 	ft_putstr(dict[i].v);
 	write(1, " ", 1);
 }
 
-int	ft_checkalgo(char *values)
-{
-	if (ft_strlen(values) == 3)
-		if (values[0] == '0' && values[1] == '0' && values[2] == '0')
-			return (0);
-	if (ft_strlen(values) == 2)
-		if (values[0] == '0' && values[1] == '0')
-			return (0);
-	if (ft_strlen(values) == 1)
-		if (values[0] == '0')
-			return (0);
-	return (1);
-}
-
 void	ft_algo(t_entry *dict, char *values, unsigned int mod)
 {
-	if (ft_checkalgo(values) == 0)
-		return ;
 	if (ft_strlen(values) == 3)
 	{
-		ft_putvalues(dict, values[0] - 48);
-		ft_putvalues(dict, 100);
+		ft_putvalues(dict, values[0] - 48, 0);
+		if (values[0] != '0')
+			ft_putvalues(dict, 100, 0);
 		if (values[1] - 48 != 0 && values[1] - 48 != 1)
-			ft_putvalues(dict, (values[1] - 48) * 10);
+			ft_putvalues(dict, (values[1] - 48) * 10, 0);
 		if (values[2] - 48 != 0 && values[1] - 48 != 1)
-			ft_putvalues(dict, values[2] - 48);
+			ft_putvalues(dict, values[2] - 48, 0);
 		if (values[1] - 48 == 1)
-			ft_putvalues(dict, 10 + values[2] - 48);
+			ft_putvalues(dict, 10 + values[2] - 48, 0);
 	}
 	if (ft_strlen(values) == 2)
 	{
-		if (values[1] - 48 != 1)
-		ft_putvalues(dict, (values[0] - 48) * 10);
+		if (values[0] - 48 != 1)
+			ft_putvalues(dict, (values[0] - 48) * 10, 0);
 		if (values[1] - 48 != 0 && values[0] - 48 != 1)
-			ft_putvalues(dict, values[1] - 48);
-		if (values[1] - 48 == 1)
-			ft_putvalues(dict, 10 + values[4] - 48);
+			ft_putvalues(dict, values[1] - 48, 0);
+		if (values[0] - 48 == 1)
+			ft_putvalues(dict, 10 + values[1] - 48, 0);
 	}
 	if (ft_strlen(values) == 1)
-		ft_putvalues(dict, values[0] - 48);
-	ft_putvalues(dict, mod);
+		ft_putvalues(dict, values[0] - 48, 0);
+	if (mod != 100)
+		ft_putvalues(dict, mod, 0);
 }
 
 void	ft_show(t_entry *dict, char *values)
 {
-	int	i;
+	int		len;
+	int		i;
+	char	vals[4][4];
 
 	if (stris0(values))
-	{
-		write(1, "2", 1);
-		ft_putvalues(dict, 0);
+		ft_putvalues(dict, 0, 1);
+	if (stris0(values))
 		return ;
-	}
+	len = ft_strlen(values);
 	i = -1;
-	//040040040100
-	ft_algo(dict, "040", 1000000000);
-	ft_algo(dict, "04", 1000000);
-	ft_algo(dict, "400", 1000);
-	ft_algo(dict, "100", 100);
-}
-
-/*
-void	ft_show_dix(t_entry *dict, char *values, int calcul, int i)
-{
-	if (ft_strlen(values) - i == 2 && calcul != 1)
-	{
-		ft_putvalues(dict, 10 * calcul);
-		if (values[i + 1] - 48 != 0)
-			ft_putvalues(dict, values[i + 1] - 48);
-	}
-	if (ft_strlen(values) - i == 2 && calcul == 1)
-	{
-		ft_putvalues(dict, 10 + values[i + 1] - 48);
-		return ;
-	}
-	if (ft_strlen(values) - i == 1)
-		if (ft_strlen(values) - i )
-			if(values[i])
-		else
-			ft_putvalues(dict, values[i] - 48);
-}
-
-void	ft_show(t_entry *dict, char *values)
-{
-	int	i;
-	int	calcul;
-	int len;
-
+	while (++i < 16)
+		vals[i / 4][i % 4] = '\0';
 	i = -1;
-	while (values[++i])
-	{
-		len = ft_strlen(values) - i;
-		calcul = values[i] - 48;
-		if ((len == 10 || len == 7 || len == 4 || len == 3) && calcul != 0)
-		{
-			ft_putvalues(dict, calcul);
-			continue ;
-		}
-		if (len == 10)
-			ft_putvalues(dict, 1000000000);
-		if (len == 7)
-			ft_putvalues(dict, 1000000);
-		if (len == 4)
-			ft_putvalues(dict, 1000);
-		if (len == 3)
-			ft_putvalues(dict, 100);
-		ft_show_dix(dict, values, calcul, i);
-	}
-}*/
+	while (++i < len)
+		vals[(12 - len + i) / 3][(12 - len + i) % 3] = values[i];
+	i = -1;
+	if (len > 9 && !stris0(vals[0] + 12 - len))
+		ft_algo(dict, vals[0] + 12 - len, 1000000000);
+	if (len > 6 && !stris0(vals[1] + ((12 - len) % 3) * !(len > 9)))
+		ft_algo(dict, vals[1] + ((12 - len) % 3) * !(len > 9), 1000000);
+	if (len > 3 && !stris0(vals[2] + ((12 - len) % 3) * !(len > 6)))
+		ft_algo(dict, vals[2] + ((12 - len) % 3) * !(len > 6), 1000);
+	ft_algo(dict, vals[3] + ((12 - len) % 3) * !(len > 3), 100);
+}
